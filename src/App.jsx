@@ -8,7 +8,6 @@ const PRODUCTS = [
     name: "Pack de stickers ‘Brain’ (PNG)",
     price: 3.5,
     description: "15 stickers digitales en PNG transparentes, listos para usar en chat y redes.",
-    // Placeholder SVG como imagen — reemplaza por tus propias imágenes (no uses material de Roblox ni de terceros sin permiso)
     image: (
       <svg viewBox="0 0 400 300" className="w-full h-48 rounded-2xl shadow-inner">
         <defs>
@@ -79,19 +78,19 @@ export default function BrainrotShop() {
   const [cart, setCart] = useState({});
   const [email, setEmail] = useState("");
   const items = useMemo(() => Object.entries(cart).map(([id, qty]) => ({
-    ...PRODUCTS.find(p => p.id === id)!,
+    ...PRODUCTS.find(p => p.id === id),
     qty
   })), [cart]);
 
   const subtotal = useMemo(() => items.reduce((s, it) => s + it.price * it.qty, 0), [items]);
 
-  function add(id:string, by:number = 1) {
+  function add(id, by = 1) {
     setCart(prev => ({ ...prev, [id]: Math.max(0, (prev[id] || 0) + by) }));
   }
 
-  function remove(id:string) {
+  function remove(id) {
     setCart(prev => {
-      const p = { ...prev } as Record<string, number>;
+      const p = { ...prev };
       delete p[id];
       return p;
     });
@@ -106,7 +105,6 @@ export default function BrainrotShop() {
       alert("Tu carrito está vacío.");
       return;
     }
-    // Aquí integrarías Stripe Checkout o PayPal. Este alert es solo demo.
     alert(`(DEMO) Procediendo al pago seguro por ${currency(subtotal)}. Tras el pago enviaremos los enlaces de descarga a ${email}.`);
   }
 
