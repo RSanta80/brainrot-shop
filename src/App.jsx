@@ -76,7 +76,7 @@ const PRODUCTS = [
 const currency = (n) => n.toLocaleString("es-ES", { style: "currency", currency: "EUR" });
 
 export default function BrainrotShop() {
-  const [cart, setCart] = useState<Record<string, number>>({});
+  const [cart, setCart] = useState({});
   const [email, setEmail] = useState("");
   const items = useMemo(() => Object.entries(cart).map(([id, qty]) => ({
     ...PRODUCTS.find(p => p.id === id)!,
