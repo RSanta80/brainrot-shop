@@ -73,7 +73,7 @@ const PRODUCTS = [
   },
 ];
 
-const currency = (n:number) => n.toLocaleString("es-ES", { style: "currency", currency: "EUR" });
+const currency = (n) => n.toLocaleString("es-ES", { style: "currency", currency: "EUR" });
 
 export default function BrainrotShop() {
   const [cart, setCart] = useState<Record<string, number>>({});
